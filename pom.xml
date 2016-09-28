@@ -1,17 +1,18 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>datasciencespark</groupId>
-  <artifactId>datasciencespark</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>datasciencespark</groupId>
+	<artifactId>datasciencespark</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<properties>
 		<scalaVersion>2.10.6</scalaVersion>
 		<!-- change to "2.11" once Scala 2.11.0 final is out -->
 		<scalaBinaryVersion>2.10</scalaBinaryVersion>
 		<corenlp.version>3.4.1</corenlp.version>
-		<spark.version>1.6.1</spark.version>
-		<cassandra.version>1.5.0-M1</cassandra.version>
+		<spark.version>2.0.0</spark.version>
+		<spark.external.version>1.6.2</spark.external.version>
+		<cassandra.version>1.6.0-M1</cassandra.version>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.scala-lang</groupId>
@@ -66,38 +67,39 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-streaming-kafka_2.10</artifactId>
-			<version>${spark.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-streaming-twitter_2.10</artifactId>
-			<version>${spark.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-network-common_2.10</artifactId>
 			<version>${spark.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-streaming-kafka_2.10</artifactId>
+			<version>${spark.external.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-streaming-twitter_2.10</artifactId>
+			<version>${spark.external.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-bagel_2.10</artifactId>
-			<version>${spark.version}</version>
+			<version>${spark.external.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-streaming-zeromq_2.10</artifactId>
-			<version>${spark.version}</version>
+			<version>${spark.external.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-streaming-mqtt_2.10</artifactId>
-			<version>${spark.version}</version>
+			<version>${spark.external.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-streaming-flume_2.10</artifactId>
-			<version>${spark.version}</version>
+			<version>${spark.external.version}</version>
 		</dependency>
 
 		<!-- stanford nlp -->
@@ -154,22 +156,19 @@
 			<version>2.9.3</version>
 		</dependency>
 		<dependency>
-			<groupId>com.databricks</groupId>
-			<artifactId>spark-csv_2.10</artifactId>
-			<version>1.4.0</version>
+			<groupId>org.apache.tinkerpop</groupId>
+			<artifactId>gremlin-core</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tinkerpop</groupId>
+			<artifactId>tinkergraph-gremlin</artifactId>
+			<version>3.2.1</version>
 		</dependency>
 	</dependencies>
 	<build>
 		<sourceDirectory>src/main/scala</sourceDirectory>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
